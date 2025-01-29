@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <div id="logo"></div>
-        <div id="links">
-            <a href="random-generation/index.html">Dice Roller</a>
-            <a href="random-generation/videos.html">Favorite Videos</a>
-            <a href="BouncingCircles/index.html">Bouncing Circles</a>
+        <div id="logo">
+            <img src="random-generation/images/LG.png" alt="LukeGeyer Logo">
+            <div id="logo-text">Luke Geyer</div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">Dropdown</button>
+            <div class="dropdown-content">
+                <a href="index.html">Home</a>
+                <a href="random-generation/dice.html">Dice Roller</a>
+                <a href="random-generation/videos.html">Favorite Videos</a>
+                <a href="BouncingCircles/index.html">Bouncing Circles</a>    
+            </div>
         </div>
     </nav>
+    <script src="app.js"></script>
 </body>
 </html>
