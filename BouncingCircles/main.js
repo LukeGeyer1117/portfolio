@@ -47,7 +47,7 @@ async function main() {
 	//
 	// Create the objects in the scene:
 	//
-	const NUM_CIRCLES = 20;
+	const NUM_CIRCLES = 15;
 	const tempCircleList = []
 	for (let i = 0; i < NUM_CIRCLES; i++) {
 		let c = new Circle(xlow, xhigh, ylow, yhigh);

@@ -2,8 +2,25 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>BouncingCircles2</title>
+		<link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
+		<nav>
+			<div id="logo">
+				<img src="../random-generation/images/LG.png" alt="LukeGeyer Logo">
+				<div id="logo-text">Luke Geyer</div>
+			</div>
+			<div class="dropdown">
+				<button class="dropbtn">Dropdown</button>
+				<div class="dropdown-content">
+					<a href="../index.html">Home</a>
+					<a href="../random-generation/dice.html">Dice Roller</a>
+					<a href="../random-generation/videos.html">Favorite Videos</a>
+					<a href="index.html">Bouncing Circles</a>    
+				</div>
+			</div>
+		</nav>
 		<canvas id="glcanvas" width="500" height="500">
 			Your browser does not support HTML5
 		</canvas>
@@ -12,8 +29,8 @@
 
 		<script>
 			let canvas = document.getElementById('glcanvas');
-			canvas.width = window.innerWidth;
-			canvas.height = window.innerHeight;
+			canvas.width = window.innerWidth * 0.8;
+			canvas.height = window.innerHeight * 0.8;
 		</script>
 
 		<script
