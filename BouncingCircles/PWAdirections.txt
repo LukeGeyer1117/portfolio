@@ -1,0 +1,98 @@
+To make BouncingCircles a PWA:
+
+1. Grab a screen shot with WindowsShiftS
+
+2. Paste into Paint and make it a 512 by 512 square image.
+Save as icon.png into project folder.
+
+3. Open icon.png in https://realfavicongenerator.net
+For Favicon Generator Options, put them in directory ./icons
+Click Generate
+Download the favicon package, unzip, copy contents to an icons subdirectory of html project
+Copy the given lines into the head section of index.html
+
+4. Copy site.webmanifest from ./icons to main directory
+Rename to manifest.json
+Inside manifest.json, add icons/ before the 2 "src" png file names.
+For one of the two icons (512), add:
+            "purpose": "any maskable"
+Provide a name and a short_name
+Change "display" to "fullscreen"
+After "display, add "start_url": "index.html"
+
+5. To index.html, add:
+  <meta name="viewport" content="width=device-width"> 
+and change:
+    <link rel="manifest" href="./icons/site.webmanifest">
+to:
+    <link rel="manifest" href="manifest.json">
+	
+6. Put a copy of service-worker.js in my web directory.
+Get it from Canvas Files.
+Edit it to have a unique cache name, different for each app.
+Call from index.html with:
+    <script>
+        navigator.serviceWorker.register('service-worker.js');
+    </script>
+	
+7. Add this to index.html, in header section:
+    <style>
+      html,body,canvas{
+        width:100%;
+        height:100%;
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+        display: block;
+      }
+    </style>	
+	
+8. Make sure your index.html file starts with:
+<!DOCTYPE html>
+<html lang="en">
+
+9. Add a description to your index.html file, such as:
+ <meta name="description" content="shows accelerometer as you tilt the screen">
+
+
+10. While running the webapp, try Inspect/Lighthouse to see what I'm missing.
+NOTE: This only works with some text in the body, BEFORE the canvas. You can take it out afterwards.
+
+11. Add accelerometer device motion event to beginning of main.js
+	let gravity = [0, 0];
+
+	if (!(window.DeviceOrientationEvent == undefined)) {
+		window.addEventListener("deviceorientation", handleOrientation);
+		}
+		
+	function handleOrientation(event) {
+		let x = event.beta; // In degree in the range [-180,180)
+		let y = event.gamma; // In degree in the range [-90,90)
+
+		if (x==null || y==null){
+			gravity[0] = 0;
+			gravity[1] = -1;
+		}
+		else{
+			// Because we don't want to have the device upside down
+			// We constrain the x value to the range [-90,90]
+			if (x > 90) {
+			x = 90;
+			}
+			if (x < -90) {
+			x = -90;
+			}
+
+			gravity[0] = y/90; // -1 to +1
+			gravity[1] = -x/90; // flip y upside down.
+		}
+	} 
+Make the rest of your code use gravity[0] and gravity[1]
+
+12. To transfer app to my phone, first transfer the project to a web service like AlterVista.
+(See Altervista Setup.pdf in Canvas Files.)
+Using Chrome, view the project there.
+Click the 3 dots on the far right of chrome.
+Then Save and share, Create QR Code
+View the QR code with your phone camera, then go to that page.
+Click 3 dots on your Android phone, and choose Install App.
