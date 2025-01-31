@@ -5,6 +5,16 @@ main();
 async function main() {
 	console.log('This is working');
 
+	window.addEventListener("deviceorientation", (event) => {
+		const alpha = event.alpha; // Rotation around Z-axis (compass direction)
+		const beta = event.beta;   // Tilt front-to-back (-180 to 180)
+		const gamma = event.gamma; // Tilt left-to-right (-90 to 90)
+	
+		console.log("Alpha (Z-axis):", alpha);
+		console.log("Beta (X-axis):", beta);
+		console.log("Gamma (Y-axis):", gamma);
+	});	
+
 	//
 	// Init gl
 	// 
@@ -47,7 +57,7 @@ async function main() {
 	//
 	// Create the objects in the scene:
 	//
-	const NUM_CIRCLES = 15;
+	const NUM_CIRCLES = 20;
 	const tempCircleList = []
 	for (let i = 0; i < NUM_CIRCLES; i++) {
 		let c = new Circle(xlow, xhigh, ylow, yhigh);
