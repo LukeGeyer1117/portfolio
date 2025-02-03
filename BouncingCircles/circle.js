@@ -1,5 +1,27 @@
 import {collideParticles} from './collisions.js';
 
+window.addEventListener("deviceorientation", (event) => {
+    const alpha = event.alpha; // Rotation around Z-axis (compass direction)
+    const beta = event.beta;   // Tilt front-to-back (-180 to 180)
+    const gamma = event.gamma; // Tilt left-to-right (-90 to 90)
+
+    // if values are not null
+    let betaHolder = document.querySelector('#beta');
+    if (beta != null) {
+        gravity[0] *= (beta * 0.001);
+        betaHolder.innerHTML = beta;
+    }
+    let gammaHolder = document.querySelector('#gamma');
+    if (gamma != null) {
+        gravity[1] *= (gamma * 0.001);
+        gammaHolder.innerHTML = gamma;
+    }
+
+    console.log("Alpha (Z-axis):", alpha);
+    console.log("Beta (X-axis):", beta);
+    console.log("Gamma (Y-axis):", gamma);
+});
+
 class Circle{
     constructor(xlow, xhigh, ylow, yhigh, gravity){ // make the circles inside these World Coordinates
 
