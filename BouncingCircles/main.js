@@ -3,6 +3,7 @@ import {initShaderProgram} from "./shader.js";
 
 let gravityHolder = document.querySelector("#gravity-holder");
 let gravityFloat = Number(gravityHolder.innerHTML);
+console.log(`gravityFloat: ${gravityFloat}`);
 
 // Modify gravity with buttons
 let gravMinus = document.querySelector('#grav-minus');
@@ -27,7 +28,8 @@ simButton.addEventListener('click', function () {
 async function main(gravityHolder) {
 	console.log('This is working');
 
-	let gravity = [0, Number(gravityHolder.innerHTML)];
+	let gravity = [0, gravityFloat];
+	console.log(`gravity: ${gravity}`);
 
 	window.addEventListener("deviceorientation", (event) => {
 		const alpha = event.alpha; // Rotation around Z-axis (compass direction)
@@ -113,8 +115,10 @@ async function main(gravityHolder) {
 		}
 	}
 
-	console.log(tempCircleList.length);
 	const circleList = tempCircleList;
+	for (let i = 0; i < circleList.length; i++) {
+		console.log(circleList[i]);
+	}
 
 	//
 	// Main render loop

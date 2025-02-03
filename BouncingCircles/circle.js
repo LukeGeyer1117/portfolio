@@ -142,6 +142,7 @@ function drawCircle(gl, shaderProgram, color, degrees, x, y, size, sides, radius
 	// Set Uniform uColor
 	//
 	const colorUniformLocation = gl.getUniformLocation(shaderProgram, "uColor");
+    gl.useProgram(shaderProgram);
 	gl.uniform4fv(colorUniformLocation, color);
 
 	//
