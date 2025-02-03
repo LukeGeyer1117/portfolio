@@ -40,12 +40,12 @@ async function main() {
 		let betaHolder = document.querySelector('#beta');
 		if (beta != null) {
 			gravity[0] *= (beta * 0.001);
-			betaHolder.innerHTML = gravity[0];
+			betaHolder.innerHTML = beta;
 		}
 		let gammaHolder = document.querySelector('#gamma');
 		if (gamma != null) {
 			gravity[1] *= (gamma * 0.001);
-			gammaHolder.innerHTML = gravity[1];
+			gammaHolder.innerHTML = gamma;
 		}
 	
 		console.log("Alpha (Z-axis):", alpha);
