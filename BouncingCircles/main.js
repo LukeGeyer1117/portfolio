@@ -36,10 +36,10 @@ async function main(gravityHolder) {
 
 		// if values are not null
 		if (beta != null) {
-			gravity[0] = beta;
+			gravity[0] *= beta;
 		}
 		if (gamma != null) {
-			gravity[1] = gamma;
+			gravity[1] *= gamma;
 		}
 	
 		console.log("Alpha (Z-axis):", alpha);
