@@ -84,3 +84,8 @@ nav {
     font-size: 14pt;
     margin: 0px 20px;
 }
+
+#gamma, #beta {
+    color: white;
+    font-size: 18pt;
+}

@@ -36,8 +36,8 @@ class Circle{
     }
     update0(){
         // subtract for gravity
-        this.dx -= (this.gravity[0] * 0.01);
-        this.dy -= (this.gravity[1] * 0.01);
+        this.dx -= (this.gravity[0]);
+        this.dy -= (this.gravity[1]);
 
         // multiply for air friction
         this.dy *= this.aF;

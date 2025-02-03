@@ -22,10 +22,10 @@ gravPlus.addEventListener('click', function () {
 // Restart the simulation
 let simButton = document.querySelector('#sim-button');
 simButton.addEventListener('click', function () {
-	main(gravityHolder.innerHTML);
+	main();
 })
 
-async function main(gravityHolder) {
+async function main() {
 	console.log('This is working');
 
 	let gravity = [0, gravityFloat];
@@ -37,11 +37,15 @@ async function main(gravityHolder) {
 		const gamma = event.gamma; // Tilt left-to-right (-90 to 90)
 
 		// if values are not null
+		let betaHolder = document.querySelector('#beta');
 		if (beta != null) {
-			gravity[0] *= beta;
+			// gravity[0] *= beta;
+			betaHolder.innerHTML = beta;
 		}
+		let gammaHolder = document.querySelector('#gamma');
 		if (gamma != null) {
-			gravity[1] *= gamma;
+			// gravity[1] *= gamma;
+			gammaHolder.innerHTML = gamma;
 		}
 	
 		console.log("Alpha (Z-axis):", alpha);
