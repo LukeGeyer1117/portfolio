@@ -27,7 +27,7 @@ simButton.addEventListener('click', function () {
 async function main(gravityHolder) {
 	console.log('This is working');
 
-	let gravity = [0, gravityFloat];
+	let gravity = [0, Number(gravityHolder.innerHTML)];
 
 	window.addEventListener("deviceorientation", (event) => {
 		const alpha = event.alpha; // Rotation around Z-axis (compass direction)
@@ -89,7 +89,7 @@ async function main(gravityHolder) {
 	//
 	// Create the objects in the scene:
 	//
-	const NUM_CIRCLES = 20;
+	const NUM_CIRCLES = 1;
 	const tempCircleList = []
 	for (let i = 0; i < NUM_CIRCLES; i++) {
 		let c = new Circle(xlow, xhigh, ylow, yhigh, gravity);
