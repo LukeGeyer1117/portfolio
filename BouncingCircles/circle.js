@@ -1,11 +1,12 @@
 import {collideParticles} from './collisions.js';
 
 class Circle{
-    constructor(xlow, xhigh, ylow, yhigh){ // make the circles inside these World Coordinates
+    constructor(xlow, xhigh, ylow, yhigh, gravity){ // make the circles inside these World Coordinates
         this.xlow = xlow;
         this.xhigh = xhigh;
         this.ylow = ylow;
         this.yhigh = yhigh;
+        this.gravity = gravity;
         this.color = [Math.random(), Math.random(), Math.random(), 1]
         this.radius = 1 + Math.random() * 1;
         this.size = this.radius; // half edge between 1.0 and 2.0
@@ -28,7 +29,8 @@ class Circle{
     }
     update0(DT, circleList, me){
         // subtract for gravity
-        this.dy -= 0.25;
+        this.dx -= this.gravity[0]; 
+        this.dy -= this.gravity[1];
 
         // multiply for air friction
         this.dy *= this.aF;

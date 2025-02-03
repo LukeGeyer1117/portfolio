@@ -1,14 +1,46 @@
 import { Circle } from "./circle.js";
 import {initShaderProgram} from "./shader.js";
 
-main();
-async function main() {
+let gravityHolder = document.querySelector("#gravity-holder");
+let gravityFloat = Number(gravityHolder.innerHTML);
+
+// Modify gravity with buttons
+let gravMinus = document.querySelector('#grav-minus');
+gravMinus.addEventListener('click', function () {
+	gravityFloat -= 0.01;
+	gravityFloat = Math.round(gravityFloat * 100) / 100;
+	gravityHolder.innerHTML = gravityFloat;
+})
+let gravPlus = document.querySelector('#grav-plus');
+gravPlus.addEventListener('click', function () {
+	gravityFloat += 0.01;
+	gravityFloat = Math.round(gravityFloat * 100) / 100;
+	gravityHolder.innerHTML = gravityFloat;
+})
+
+// Restart the simulation
+let simButton = document.querySelector('#sim-button');
+simButton.addEventListener('click', function () {
+	main(gravityHolder.innerHTML);
+})
+
+async function main(gravityHolder) {
 	console.log('This is working');
+
+	let gravity = [0, gravityFloat];
 
 	window.addEventListener("deviceorientation", (event) => {
 		const alpha = event.alpha; // Rotation around Z-axis (compass direction)
 		const beta = event.beta;   // Tilt front-to-back (-180 to 180)
 		const gamma = event.gamma; // Tilt left-to-right (-90 to 90)
+
+		// if values are not null
+		if (beta != null) {
+			gravity[0] = beta;
+		}
+		if (gamma != null) {
+			gravity[1] = gamma;
+		}
 	
 		console.log("Alpha (Z-axis):", alpha);
 		console.log("Beta (X-axis):", beta);
@@ -60,7 +92,7 @@ async function main() {
 	const NUM_CIRCLES = 20;
 	const tempCircleList = []
 	for (let i = 0; i < NUM_CIRCLES; i++) {
-		let c = new Circle(xlow, xhigh, ylow, yhigh);
+		let c = new Circle(xlow, xhigh, ylow, yhigh, gravity);
 		tempCircleList.push(c);
 	}
 

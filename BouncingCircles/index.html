@@ -21,6 +21,16 @@
 				</div>
 			</div>
 		</nav>
+		<div id="gravity-manipulation-holder">
+			<h2 id="gravity-holder">
+				0.25
+			</h2>
+			<div id="gravity-buttons">
+				<button id="grav-minus">-</button>
+				<button id="grav-plus">+</button>
+			</div>
+			<button id="sim-button">Begin/Restart Simulation</button>
+		</div>
 		<canvas id="glcanvas" width="500" height="500">
 			Your browser does not support HTML5
 		</canvas>
@@ -40,5 +50,8 @@
 			defer>
 		</script>
 		<script src="main.js" type="module"></script>
+		<script>
+			navigator.serviceWorker.register('service-worker.js');
+		</script>
 	</body>
 </html>
