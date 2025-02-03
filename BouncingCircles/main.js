@@ -37,7 +37,7 @@ function handleOrientation(event) {
 
 	if (x==null || y==null){
 		gravity[0] = 0;
-		gravity[1] = -1;
+		gravity[1] = 1;
 	}
 	else{
 		// Because we don't want to have the device upside down
@@ -49,13 +49,15 @@ function handleOrientation(event) {
 		x = -90;
 		}
 
-		gravity[0] = -1 * (y/90); // -1 to +1
-		gravity[1] = -1 * (-x/90); // flip y upside down.
+		gravity[0] = y/90; // -1 to +1
+		gravity[1] = -x/90; // flip y upside down.
 	}
+	console.log(`gravity: ${gravity}`)
 } 
 
 async function main() {
 	console.log('This is working');
+
 
 	//
 	// Init gl
