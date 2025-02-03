@@ -2,14 +2,21 @@ import {collideParticles} from './collisions.js';
 
 class Circle{
     constructor(xlow, xhigh, ylow, yhigh, gravity){ // make the circles inside these World Coordinates
+
+        // max and min world coordinates
         this.xlow = xlow;
         this.xhigh = xhigh;
         this.ylow = ylow;
         this.yhigh = yhigh;
+        
+        // 2-array with dx and dy based on accelerometer
         this.gravity = gravity;
+
+        // random attrs for circle
         this.color = [Math.random(), Math.random(), Math.random(), 1]
         this.radius = 1 + Math.random() * 1;
         this.size = this.radius; // half edge between 1.0 and 2.0
+
         const minx = xlow+this.size;
         const maxx = xhigh-this.size;
         this.x = minx + Math.random()*(maxx-minx);
@@ -27,10 +34,10 @@ class Circle{
         this.sides = 40;
         this.aF = 0.999;
     }
-    update0(DT, circleList, me){
+    update0(){
         // subtract for gravity
-        this.dx -= this.gravity[0]; 
-        this.dy -= this.gravity[1];
+        this.dx -= (this.gravity[0] * 0.01);
+        this.dy -= (this.gravity[1] * 0.01);
 
         // multiply for air friction
         this.dy *= this.aF;

@@ -89,7 +89,7 @@ async function main(gravityHolder) {
 	//
 	// Create the objects in the scene:
 	//
-	const NUM_CIRCLES = 1;
+	const NUM_CIRCLES = 5;
 	const tempCircleList = []
 	for (let i = 0; i < NUM_CIRCLES; i++) {
 		let c = new Circle(xlow, xhigh, ylow, yhigh, gravity);
@@ -133,7 +133,7 @@ async function main(gravityHolder) {
 
 		// Update the scene
 		for (let i = 0; i < circleList.length; i++) {
-			circleList[i].update0(DT, circleList, i);
+			circleList[i].update0();
 		}
 
 		for (let i = 0; i < circleList.length; i++) {
@@ -151,7 +151,6 @@ async function main(gravityHolder) {
 			circleList[i].draw(gl, shaderProgram);
 		}
 	  
-	
 		requestAnimationFrame(redraw);
 	  }	
 	  requestAnimationFrame(redraw);
