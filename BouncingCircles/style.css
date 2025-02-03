@@ -85,7 +85,51 @@ nav {
     margin: 0px 20px;
 }
 
+/* Control the styling of gravity header, holder, buttons */
+#gravity-manipulation-holder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#gravity-header, #gravity-holder {
+    color: white;
+}
+
+#gravity-header {
+    margin: 0px;
+}
+
+#accelerometer-info {
+    visibility: hidden;
+}
+
 #gamma, #beta {
     color: white;
     font-size: 18pt;
+    height: 0px;
+}
+
+#gravity-type {
+    margin: 20px;
+}
+
+#gravity-buttons {
+    padding: 20px;
+}
+
+#gravity-buttons button, #sim-button {
+    font-family: sans-serif;
+    font-size: 14pt;
+    min-width: 45px;
+}
+
+#gravity-buttons button:hover, #sim-button:hover {
+    background-color: #ddd;
+    transform: scale(1.05);
+}
+
+#glcanvas {
+    margin: 20px;
 }

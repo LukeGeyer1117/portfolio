@@ -36,7 +36,7 @@ class Circle{
 
         // random attrs for circle
         this.color = [Math.random(), Math.random(), Math.random(), 1]
-        this.radius = 1 + Math.random() * 1;
+        this.radius = Math.random() * 0.9 + 1;
         this.size = this.radius; // half edge between 1.0 and 2.0
 
         const minx = xlow+this.size;

@@ -1,30 +1,18 @@
 import { Circle } from "./circle.js";
 import {initShaderProgram} from "./shader.js";
 
-let gravityHolder = document.querySelector("#gravity-holder");
+let gravityHolder = document.querySelector("#gravity-type");
 let gravityFloat = Number(gravityHolder.innerHTML);
 console.log(`gravityFloat: ${gravityFloat}`);
 
-// Modify gravity with buttons
-let gravMinus = document.querySelector('#grav-minus');
-gravMinus.addEventListener('click', function () {
-	gravityFloat -= 0.01;
-	gravityFloat = Math.round(gravityFloat * 100) / 100;
-	gravityHolder.innerHTML = gravityFloat;
-})
-let gravPlus = document.querySelector('#grav-plus');
-gravPlus.addEventListener('click', function () {
-	gravityFloat += 0.01;
-	gravityFloat = Math.round(gravityFloat * 100) / 100;
-	gravityHolder.innerHTML = gravityFloat;
-})
-
-// Restart the simulation
+// Start/Restart the simulation
 let simButton = document.querySelector('#sim-button');
 simButton.addEventListener('click', function () {
 	main();
 })
 
+
+// Handles the changing of device orientation dynamically with the program.
 let gravity = [0, 0];
 
 if (!(window.DeviceOrientationEvent == undefined)) {
@@ -55,9 +43,15 @@ function handleOrientation(event) {
 	console.log(`gravity: ${gravity}`)
 } 
 
+// Modify gravity with form
+let gravForm = document.querySelector('#gravity-type');
+gravForm.addEventListener('change', function () {
+	gravity[1] = parseFloat(gravForm.value);
+	console.log('updated gravity');
+})
+
 async function main() {
 	console.log('This is working');
-
 
 	//
 	// Init gl
