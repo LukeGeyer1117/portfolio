@@ -25,33 +25,37 @@ simButton.addEventListener('click', function () {
 	main();
 })
 
+let gravity = [0, 0];
+
+if (!(window.DeviceOrientationEvent == undefined)) {
+	window.addEventListener("deviceorientation", handleOrientation);
+	}
+	
+function handleOrientation(event) {
+	let x = event.beta; // In degree in the range [-180,180)
+	let y = event.gamma; // In degree in the range [-90,90)
+
+	if (x==null || y==null){
+		gravity[0] = 0;
+		gravity[1] = -1;
+	}
+	else{
+		// Because we don't want to have the device upside down
+		// We constrain the x value to the range [-90,90]
+		if (x > 90) {
+		x = 90;
+		}
+		if (x < -90) {
+		x = -90;
+		}
+
+		gravity[0] = y/90; // -1 to +1
+		gravity[1] = -x/90; // flip y upside down.
+	}
+} 
+
 async function main() {
 	console.log('This is working');
-
-	let gravity = [0, gravityFloat];
-	console.log(`gravity: ${gravity}`);
-
-	window.addEventListener("deviceorientation", (event) => {
-		const alpha = event.alpha; // Rotation around Z-axis (compass direction)
-		const beta = event.beta;   // Tilt front-to-back (-180 to 180)
-		const gamma = event.gamma; // Tilt left-to-right (-90 to 90)
-
-		// if values are not null
-		let betaHolder = document.querySelector('#beta');
-		if (beta != null) {
-			gravity[0] *= (beta * 0.001);
-			betaHolder.innerHTML = beta;
-		}
-		let gammaHolder = document.querySelector('#gamma');
-		if (gamma != null) {
-			gravity[1] *= (gamma * 0.001);
-			gammaHolder.innerHTML = gamma;
-		}
-	
-		console.log("Alpha (Z-axis):", alpha);
-		console.log("Beta (X-axis):", beta);
-		console.log("Gamma (Y-axis):", gamma);
-	});	
 
 	//
 	// Init gl
