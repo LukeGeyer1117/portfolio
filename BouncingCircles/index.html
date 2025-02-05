@@ -8,13 +8,15 @@
 	</head>
 	<body>
 		<nav>
-			<div id="logo">
-				<img src="../random-generation/images/LG.png" alt="LukeGeyer Logo">
+			<a href="../index.html" id="logo">
+				<img src="../../images/LG_green.png" alt="LukeGeyer Logo">
 				<div id="logo-text">Luke Geyer</div>
-			</div>
+			</a>
 			<div class="dropdown">
-				<button class="dropbtn">Dropdown</button>
-				<div class="dropdown-content">
+				<div id="dropdown-holder">
+					<button class="dropbtn">Projects</button>
+					<img src="/images/dropup_arrow.svg" alt="dropdown arrow">
+				</div>				<div class="dropdown-content">
 					<a href="../index.html">Home</a>
 					<a href="../random-generation/dice.html">Dice Roller</a>
 					<a href="../random-generation/videos.html">Favorite Videos</a>
@@ -52,9 +54,10 @@
 			crossorigin="anonymous"
 			defer>
 		</script>
-		<script src="main.js" type="module"></script>
+		<script src="/BouncingCircles/main.js" type="module"></script>
 		<script>
 			navigator.serviceWorker.register('service-worker.js');
 		</script>
+		<script src="/style.js"></script>
 	</body>
 </html>

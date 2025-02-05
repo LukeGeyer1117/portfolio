@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 40px;
 }
 
 #diceNbutton img {
@@ -13,13 +14,9 @@
     margin: 20px;
 }
 
-#diceNbutton p {
-    color: white;
-    font-family: sans-serif;
-}
 
 #dice-holder {
-    background-color: white;
+    background-color: rgb(236, 236, 236);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -52,6 +49,19 @@
     margin: 0px 5px;
     font-family: sans-serif;
     font-size: 14pt;
+    border-radius: 4px;
+    transition: background-color 0.15s ease, transform 0.2s ease;
+}
+
+#dice-picker button:hover {
+    background-color: rgb(199, 198, 198);
+    transform: scale(1.1);
+}
+
+#fortune {
+    font-family: sans-serif;
+    font-size: 16pt;
+    color: black;
 }
 
 /* Basic Button Styling for #numButton */
@@ -61,10 +71,10 @@
     padding: 10px 20px;
     border: 2px solid transparent;
     border-radius: 5px;
-    background-color: #5ce1e6;  /* light-blue */
+    background-color: #40F99B;  /* light-blue */
     color: black;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;  /* Smooth transitions */
+    transition: background-color 0.15s ease, transform 0.2s ease;  /* Smooth transitions */
     text-align: center;
     display: inline-block;
     text-decoration: none;
@@ -72,7 +82,7 @@
   
   /* Hover Effect for #numButton */
   #numButton:hover {
-    background-color: #5ce1e6; /* Darker green on hover */
+    background-color: #289e63; /* Darker green on hover */
   }
   
   /* Focus State for #numButton */

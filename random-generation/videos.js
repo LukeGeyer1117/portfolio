@@ -14,7 +14,7 @@ fetch("https://api.jsonbin.io/v3/b/6799a021ad19ca34f8f626af")
         });
     });
 
-console.log(vidArray);
+// console.log(vidArray);
 let iFrame = document.querySelector('iframe');
 
 // add event listeners for previous and next buttons to modify vidIndex
@@ -26,7 +26,7 @@ previousButton.addEventListener('click', function () {
     } else {
         alert("You're already at the first video!")
     }
-    console.log(vidIndex);
+    // console.log(vidIndex);
     iFrame.src = 'https://www.youtube.com/embed/' + vidArray[vidIndex].embed;
     vidTitle.innerHTML = vidArray[vidIndex].title;
 })
@@ -38,7 +38,7 @@ nextButton.addEventListener('click', function () {
     } else {
         vidIndex += 1;
     }
-    console.log(vidIndex);
+    // console.log(vidIndex);
     if (vidArray[vidIndex].embed) {
         iFrame.src = 'https://www.youtube.com/embed/' + vidArray[vidIndex].embed;
         vidTitle.innerHTML = vidArray[vidIndex].title;
