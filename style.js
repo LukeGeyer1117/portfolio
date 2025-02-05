@@ -14,9 +14,9 @@ dropdownHolder.addEventListener("mouseout", function () {
 // Keep the dropdown arrow if the user hovers over the dropdown-content
 let dropdown = document.querySelector(".dropdown");
 dropdown.addEventListener("mouseover", function () {
-    dropdownArrow.src = '/images/dropdown_arrow.svg';
+    dropdownArrow.src = '/portfolio/images/dropdown_arrow.svg';
 });
 
 dropdown.addEventListener("mouseout", function () {
-    dropdownArrow.src = '/images/dropup_arrow.svg';
+    dropdownArrow.src = '/portfolio/images/dropup_arrow.svg';
 });
