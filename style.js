@@ -4,11 +4,11 @@ let dropdownHolder = document.querySelector("#dropdown-holder");
 let dropdownArrow = document.querySelector("#dropdown-holder img");
 
 dropdownHolder.addEventListener("mouseover", function() {
-    dropdownArrow.src = '/images/dropdown_arrow.svg';
+    dropdownArrow.src = '/portfolio/images/dropdown_arrow.svg';
 });
 
 dropdownHolder.addEventListener("mouseout", function () {
-    dropdownArrow.src = '/images/dropup_arrow.svg';
+    dropdownArrow.src = '/portfolio/images/dropup_arrow.svg';
 });
 
 // Keep the dropdown arrow if the user hovers over the dropdown-content
