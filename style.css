@@ -1,11 +1,15 @@
-html {background-color: #B9D8C2;}
-
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 0px;
+    background-color: #B9D8C2;
+
+    background-image: url("/portfolio/images/background-dots.xcf");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 nav {
@@ -43,13 +47,13 @@ nav {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-right: 40px;
+    margin-right: 20px;
     width: fit-content;
-    padding-right: 50px;
+    /* padding-right: 20px; */
 }
 
 #dropdown-holder img {
-    height: 100%;
+    height: 30px;
     width: auto;
 }
 
@@ -109,3 +113,24 @@ nav {
     font-size: 20pt;
     margin: 0px 20px;
 } */
+
+#index-me-div {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+#hero-img {
+    max-width: 25%;
+    height: auto;
+    border-radius: 360px;
+    padding: 20px;
+    border: 3px solid #181F30;
+    background-color: #40F99B;
+}
+
+#about-me {
+    padding: 30px 10px;
+}
