@@ -37,15 +37,24 @@
 				</div>
 			</div>
 		</nav>
-		<canvas id="glcanvas" width="800" height="500">
-			Your browser does not support HTML5
-		</canvas>
 		<section id="instructions">
-			<ul>
+			<ul >
+				<h2>Instructions</h2>
 				<li>Click and drag points to modify the Bezier Curve.</li>
 				<li>Double click anywhere on the canvas to add a new curve centered at the mouse.</li>
 				<li>Right click any point of a given curve to delete the curve.</li>
+				<li>Drag 1st and last points of curves together to snap them together.</li>
 			</ul>
+		</section>
+		<canvas id="glcanvas" width="800" height="450">
+			Your browser does not support HTML5
+		</canvas>
+		<section id="description">
+			<p>
+				This is an implementation of drawing 4-point Bezier Curves fully customizable by the user.
+				Currently, line and control point colors are randomized, but a color pallette functionality 
+				could be implemented easily. Built as a part of CS-3600 Graphics Programming, (Dr. Bart Stander).
+			</p>
 		</section>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"

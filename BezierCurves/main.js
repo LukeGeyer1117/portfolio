@@ -61,24 +61,20 @@ async function main() {
 	//
 	// Register Listeners
 	//
-	// document.addEventListener("click", function (event) {
-	// 	console.log("click");
-	// 	const xWorld = xlow + event.offsetX / gl.canvas.clientWidth * (xhigh - xlow);
-	// 	const yWorld = ylow + (gl.canvas.clientHeight - event.offsetY) / gl.canvas.clientHeight * (yhigh - ylow);
-	// });
 
 
-	let beziers = [new Bezier(new Point2(-5,-5),new Point2(2,-2),new Point2(-2,2),new Point2(5,5))];
+	let beziers = [new Bezier(new Point2(Math.random() * -5,Math.random() * -5),new Point2(Math.random() * 2,Math.random() * -2),new Point2(Math.random() * -2,Math.random() * 2),new Point2(Math.random() * 5,Math.random() * 5))];
 	let selectedPoint = null;
 
+		// Double click to add a new curve
 		canvas.addEventListener("dblclick", function(event) {
 			const xWorld = xlow + event.offsetX / gl.canvas.clientWidth * (xhigh - xlow);
 			const yWorld = ylow + (gl.canvas.clientHeight - event.offsetY) / gl.canvas.clientHeight * (yhigh - ylow);
 			let mPs = [];
-			mPs.push(new Point2(xWorld-5, yWorld-5));
-			mPs.push(new Point2(xWorld+2, yWorld-2));
-			mPs.push(new Point2(xWorld-2, yWorld+2));
-			mPs.push(new Point2(xWorld+5, yWorld+5));
+			mPs.push(new Point2(Math.random() * (xWorld-5), Math.random() * (yWorld-5)));
+			mPs.push(new Point2(Math.random() * (xWorld+2), Math.random() * (yWorld-2)));
+			mPs.push(new Point2(Math.random() * (xWorld-2), Math.random() * (yWorld+2)));
+			mPs.push(new Point2(Math.random() * (xWorld+5), Math.random() * (yWorld+5)));
 	
 			for (let i = 0; i < mPs.length; i++) {
 				if (mPs[i].x > xhigh) {
@@ -99,6 +95,7 @@ async function main() {
 			beziers.push(nBezier);
 		})
 	
+		// Right click / two-finger tap to delete a curve!
 		document.addEventListener("contextmenu", function(event) {
 			event.preventDefault();
 			const xWorld = xlow + event.offsetX / gl.canvas.clientWidth * (xhigh - xlow);
@@ -108,14 +105,14 @@ async function main() {
 				for (let j = 0; j < b.points.length; j++) {
 					let x0 = xWorld, y0 = yWorld, x1 = b.points[j].x, y1 = b.points[j].y;
 					let d2 = (x1 - x0)**2 + (y1 - y0)**2;
-					if (d2 < 1) {
+					if (Math.sqrt(d2) < 0.25) {
 						beziers.splice(i, 1);
 					}
 				}
 			}
 		}) 
 	
-	
+		// Convince the selected point to follow the cursor
 		function onMouseMove(event) {
 			if (selectedPoint) {
 				let xWorld = xlow + event.offsetX / gl.canvas.clientWidth * (xhigh - xlow);
@@ -132,15 +129,42 @@ async function main() {
 				}
 				selectedPoint.x = xWorld;
 				selectedPoint.y = yWorld;
+
+				// Add a snap-to functionality
+				for (let i = 0; i < beziers.length; i++) {
+					// Check the main points of every curve
+					let p1 = beziers[i].points[0]; // The first point
+					let p2 = beziers[i].points[beziers[i].points.length -1]; // The last point
+
+					// calculate distance from selected point to the control points
+					let x0 = selectedPoint.x, y0 = selectedPoint.y;
+					let x1 = p1.x, y1 = p1.y;
+					let x2 = p2.x, y2 = p2.y;
+
+					let d2_1 = (x1 - x0)**2 + (y1 - y0)**2;
+					let d2_2 = (x2 - x0)**2 + (y2 - y0)**2;
+
+					// If the distance is small enough, snap the points together.
+					if (Math.sqrt(d2_1) < 0.5) {
+						selectedPoint.x = p1.x;
+						selectedPoint.y = p1.y;
+					}
+					if (Math.sqrt(d2_2) < 0.5) {
+						selectedPoint.x = p2.x;
+						selectedPoint.y = p2.y;
+					}
+				}
 			}
 		}
-	
+		
+		// Release the selected point
 		function onMouseUp() {
 			selectedPoint = null;
 			document.removeEventListener("mousemove", onMouseMove);
 			document.removeEventListener("mouseup", onMouseUp);
 		}
 	
+		// Check if click is near a point
 		function onMouseDown(event) {
 			const xWorld = xlow + event.offsetX / gl.canvas.clientWidth * (xhigh - xlow);
 			const yWorld = ylow + (gl.canvas.clientHeight - event.offsetY) / gl.canvas.clientHeight * (yhigh - ylow);
@@ -150,7 +174,7 @@ async function main() {
 				for (let j = 0; j < bezier.points.length; j++) {
 					let x0 = xWorld, y0 = yWorld, x1 = bezier.points[j].x, y1 = bezier.points[j].y;
 					let d2 = (x1 - x0)**2 + (y1 - y0)**2;
-					if (d2 < 1) {
+					if (Math.sqrt(d2) < 0.7) {
 						selectedPoint = bezier.points[j]
 						document.addEventListener("mousemove", onMouseMove);
 						document.addEventListener("mouseup", onMouseUp);

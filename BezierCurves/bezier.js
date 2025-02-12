@@ -7,6 +7,10 @@ class Point2 {
     }
 }
 
+// Bezier class containing a list of points and a color.
+// Draws a line strip between the first and last point,
+// and allows manipulation of any of the 4 points to 
+// change size and shape of the curve.
 class Bezier {
     constructor(point1, point2, point3, point4) {
         this.points = [point1, point2, point3, point4];
@@ -27,7 +31,7 @@ class Bezier {
     }
     drawCurve(gl, shaderProgram) {
         let points = []
-        let diff = 20;
+        let diff = 40;
         for (let i = 0; i <= diff; i++) {
             let t = i / diff;
             let p = this.evaluate(t);
@@ -41,7 +45,7 @@ class Bezier {
     drawControlPoints(gl, shaderProgram) {
         for (let i = 0; i < this.points.length; i++) {
             let p = this.points[i];
-            drawCircle(gl, shaderProgram, p.x, p.y, .5, [this.red, this.green, this.blue, 1]);
+            drawCircle(gl, shaderProgram, p.x, p.y, .25, [this.red, this.green, this.blue, 1]);
         }
     }
 }
