@@ -12,22 +12,22 @@ class Point2 {
 // and allows manipulation of any of the 4 points to 
 // change size and shape of the curve.
 class Bezier {
-    constructor(point1, point2, point3, point4) {
-        this.points = [point1, point2, point3, point4];
+    constructor(point1, point2, point3, points) {
+        this.points = [point1, point2, point3];
         this.red = Math.random() * 1;
         this.green = Math.random() * 1;
         this.blue = Math.random() * 1;
+
+        this.cPoints = points;
     }
     evaluate(t) {
-        let x = 
-        (this.points[0].x*((1-t)**3)) + (3*this.points[1].x*((1-t)**2)*t) + 
-        (3*this.points[2].x*(1-t)*(t**2)) + (this.points[3].x*(t**3));
+        if (this.cPoints == 2) {
+            let x = (this.points[0].x*(1-t)**2) + (this.points[1].x*2*(1-t)*t) + (this.points[2].x*t*t);
+            let y = (this.points[0].y*(1-t)**2) + (this.points[1].x*2*(1-t)*t) + (this.points[2].y*t*t);
 
-        let y = (this.points[0].y*((1-t)**3)) + (3*this.points[1].y*((1-t)**2)*t) + 
-        (3*this.points[2].y*(1-t)*(t**2)) + (this.points[3].y*(t**3));
-
-        let p = [x, y];
-        return p;
+            let p = [x, y];
+            return p;
+        }
     }
     drawCurve(gl, shaderProgram) {
         let points = []

@@ -62,8 +62,10 @@ async function main() {
 	// Register Listeners
 	//
 
+	let points = 2;
 
-	let beziers = [new Bezier(new Point2(Math.random() * -5,Math.random() * -5),new Point2(Math.random() * 2,Math.random() * -2),new Point2(Math.random() * -2,Math.random() * 2),new Point2(Math.random() * 5,Math.random() * 5))];
+
+	let beziers = [new Bezier(new Point2(Math.random() * -5,Math.random() * -5),new Point2(Math.random() * 2,Math.random() * -2),new Point2(Math.random() * -2,Math.random() * 2), points)];
 	let selectedPoint = null;
 
 		// Double click to add a new curve
